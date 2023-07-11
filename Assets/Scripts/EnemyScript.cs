@@ -29,7 +29,7 @@ public class EnemyScript : MonoBehaviour
         for (int i = 0; i < enemyManagerScript.waypointPositions.Count; i++)
         {
             Vector3 vector = enemyManagerScript.waypointPositions[i];
-            Debug.Log(vector);
+            
 
             targetPosition = enemyManagerScript.waypointPositions[i];
             direction = (targetPosition - transform.position).normalized;

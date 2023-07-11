@@ -11,11 +11,11 @@ public class TowerPlacingManager : MonoBehaviour
         
     }
 
-    public void InstantiateBasicTower(GameObject towerName)
+    public void InstantiateTower(GameObject towerName)
     {
         //spawn prefab "Tower" on player mouse
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 10f; // Set the distance from the camera
+        mousePosition.z = 1f; // Set the distance from the camera
 
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 

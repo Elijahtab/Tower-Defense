@@ -15,7 +15,7 @@ public class EnemyManagerScript : MonoBehaviour
         foreach (Transform child in wayPointManager)
         {
             waypointPositions.Add(child.position);
-            Debug.Log(child.position);
+            
         }
         
 

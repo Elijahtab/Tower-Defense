@@ -20,7 +20,7 @@ public class TowerPlacer : MonoBehaviour
         if (towerPlaced == false)
         {
             Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 10f; // Set the distance from the camera
+            mousePosition.z = 8f; // Set the distance from the camera
 
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
@@ -28,7 +28,7 @@ public class TowerPlacer : MonoBehaviour
         }
         
 
-        if(Input.GetMouseButtonDown(0) && canBePlaced == true)
+        if(Input.GetMouseButtonDown(0) && canBePlaced == true && towerPlaced == false)
         {
             towerPlaced = true;
         }
