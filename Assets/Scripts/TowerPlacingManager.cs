@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class TowerPlacingManager : MonoBehaviour
 {
-    
+    bool canPlaceTower = true;
 
-    void Update()   
+    public void canPlaceNewTower(bool myCanPlaceTower)
     {
-        
+        canPlaceTower = myCanPlaceTower;
     }
+    
 
     public void InstantiateTower(GameObject towerName)
     {
-        //spawn prefab "Tower" on player mouse
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = 1f; // Set the distance from the camera
+        if(canPlaceTower == true)
+            {
+                //spawn prefab "Tower" on player mouse
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition.z = 1f; // Set the distance from the camera
 
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        Instantiate(towerName, worldPosition, Quaternion.identity);
-    
-
-
+                Instantiate(towerName, worldPosition, Quaternion.identity);
+            }
+        
     }
 }

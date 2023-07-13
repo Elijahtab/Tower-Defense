@@ -8,9 +8,10 @@ public class EnemyScript : MonoBehaviour
     private GameObject enemyManagerObject;
     private EnemyManagerScript enemyManagerScript;
 
-    public Vector3 targetPosition;
+    private Vector2 targetPosition;
     public float moveSpeed = 5f;
-    private Vector3 direction;
+    private Vector2 direction;
+    private Rigidbody2D rb;
 
 
 
@@ -18,6 +19,7 @@ public class EnemyScript : MonoBehaviour
     {
         enemyManagerObject = GameObject.Find("EnemyManager");
         enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(MoveTowardsTarget());
     }
     void Update()
@@ -28,16 +30,16 @@ public class EnemyScript : MonoBehaviour
     {
         for (int i = 0; i < enemyManagerScript.waypointPositions.Count; i++)
         {
-            Vector3 vector = enemyManagerScript.waypointPositions[i];
+            Vector2 vector = enemyManagerScript.waypointPositions[i];
             
 
             targetPosition = enemyManagerScript.waypointPositions[i];
-            direction = (targetPosition - transform.position).normalized;
+            direction = (targetPosition - (Vector2)transform.position).normalized;
 
-            while (Vector3.Distance(transform.position, targetPosition) > .1f)
+            while (Vector2.Distance(transform.position, targetPosition) > .1f)
             {   
                 // Move towards the target position based on the direction and moveSpeed
-                transform.position += direction * moveSpeed * Time.deltaTime;
+                rb.velocity = direction * moveSpeed;
                 yield return null;
                 
             }
@@ -45,6 +47,16 @@ public class EnemyScript : MonoBehaviour
 
         }
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+         // Check if collision occurs with a specific tag
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
     
     

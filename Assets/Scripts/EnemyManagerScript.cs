@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyManagerScript : MonoBehaviour
 {
     public Transform wayPointManager; // Reference to the parent object
-    public List<Vector3> waypointPositions;
+    public List<Vector2> waypointPositions;
 
     void Start()
     {   
 
-        waypointPositions = new List<Vector3>();
+        waypointPositions = new List<Vector2>();
 
         foreach (Transform child in wayPointManager)
         {
@@ -18,7 +18,6 @@ public class EnemyManagerScript : MonoBehaviour
             
         }
         
-
     }
 
 }

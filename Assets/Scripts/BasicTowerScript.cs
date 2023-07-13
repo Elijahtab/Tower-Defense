@@ -12,21 +12,29 @@ public class BasicTowerScript : MonoBehaviour
     public float shootingSpeedDelay = 2f; // Delay duration in seconds
     public float projectileSpeed = 10f; // Speed of the projectile
 
+    bool myTowerPlaced = false;
+
+    
+
     private void Start()
     {
         Transform childTransform = transform.GetChild(0);
         Vector3 newRangeSize = new Vector3((float)(maxDistance*1.8), (float)(maxDistance*1.8), 0f);
         childTransform.localScale = newRangeSize;
     }
+    private void Awake()
+    {
+        myTowerPlaced = false;
+    }
 
     private GameObject FindClosestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        Vector3 currentPosition = transform.position;
+        Vector2 currentPosition = transform.position;
 
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(enemy.transform.position, currentPosition);
+            float distanceToEnemy = Vector2.Distance(enemy.transform.position, currentPosition);
 
             // Check if the enemy is within the desired distance
             if (distanceToEnemy <= maxDistance)
@@ -41,40 +49,43 @@ public class BasicTowerScript : MonoBehaviour
     private void Update()
     {
         GameObject closestEnemy = FindClosestEnemy();
-       
         
-        if (delayTimer <= 0f)
+        if (delayTimer <= 0f && myTowerPlaced == true)
             {
                 // Code to execute after the delay
                 if (closestEnemy == null)
                 {
-                    Debug.Log("No closest enemy available to shoot at.");
                     return;
                 }
                 else
                 {
+
+                    Rigidbody2D enemyRigidbody = closestEnemy.GetComponent<Rigidbody2D>();
+                    Vector2 direction = (closestEnemy.transform.position - transform.position).normalized;
+
                     // Create a new projectile instance
-                    GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                    GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + (direction * 0.1f), Quaternion.identity);
 
                     // Calculate the direction towards the closest enemy
-                    Vector3 direction = (closestEnemy.transform.position - transform.position).normalized;
 
                     // Set the velocity of the projectile
                     Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-                    rb.velocity = direction * projectileSpeed;
+                    rb.velocity = (direction * projectileSpeed) + enemyRigidbody.velocity;
                     
                 }
 
                 delayTimer = shootingSpeedDelay; // Reset the timer for the next delay
             }
-            else
-            {
-                delayTimer -= Time.deltaTime; // Decrease the timer by the time passed since the last frame
-            }
-        
+        else
+        {
+            delayTimer -= Time.deltaTime; // Decrease the timer by the time passed since the last frame
+        }
 
+    }
 
-        
+    public void towerIsPlaced()
+    {
+        myTowerPlaced = true;
     }
 
     

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3306317217389529672}
   - component: {fileID: 109486843761189668}
-  - component: {fileID: 1407658893890086155}
   - component: {fileID: 6519542591252084412}
   - component: {fileID: 5591713456464759277}
+  - component: {fileID: 1407658893890086155}
   - component: {fileID: 9166456682563134126}
   m_Layer: 0
   m_Name: 'Basic Tower '
@@ -89,18 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1407658893890086155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956996317194683248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e8723432965664d88d81d4e8e528c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &6519542591252084412
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -151,6 +139,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1407658893890086155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956996317194683248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e8723432965664d88d81d4e8e528c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9166456682563134126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   enemyTag: Enemy
   maxDistance: 4
   projectilePrefab: {fileID: 9174041964117015018, guid: b327bc87a4994af4297d01177255fc87, type: 3}
-  shootingSpeedDelay: 1
+  shootingSpeedDelay: 2
   projectileSpeed: 10
 --- !u!1 &5590314684665828817
 GameObject:

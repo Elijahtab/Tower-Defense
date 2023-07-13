@@ -10,9 +10,17 @@ public class TowerPlacer : MonoBehaviour
     bool canBePlaced = true;
     private SpriteRenderer spriteRenderer;
 
+    private BasicTowerScript basicTowerScript;
+    private TowerPlacingManager towerPlacingManager;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        basicTowerScript = GetComponent<BasicTowerScript>();
+        GameObject gameManager = GameObject.Find("GameManager");
+        towerPlacingManager = gameManager.GetComponent<TowerPlacingManager>();
+
+
     }
 
     void Update()
@@ -21,16 +29,17 @@ public class TowerPlacer : MonoBehaviour
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 8f; // Set the distance from the camera
-
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
             transform.position = worldPosition;
+            towerPlacingManager.canPlaceNewTower(false);
         }
         
 
         if(Input.GetMouseButtonDown(0) && canBePlaced == true && towerPlaced == false)
         {
             towerPlaced = true;
+            basicTowerScript.towerIsPlaced();
+            towerPlacingManager.canPlaceNewTower(true);
         }
         
     }
