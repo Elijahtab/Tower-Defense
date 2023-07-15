@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    private GameObject enemyManagerObject;
+    private GameObject gameManagerObject;
     private EnemyManagerScript enemyManagerScript;
+    private StatsManagerScript statsManagerScript;
 
     private Vector2 targetPosition;
     public float moveSpeed = 5f;
@@ -17,8 +18,9 @@ public class EnemyScript : MonoBehaviour
 
     void Awake()
     {
-        enemyManagerObject = GameObject.Find("EnemyManager");
-        enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
+        gameManagerObject = GameObject.Find("GameManager");
+        enemyManagerScript = gameManagerObject.GetComponent<EnemyManagerScript>();
+        statsManagerScript = gameManagerObject.GetComponent<StatsManagerScript>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(MoveTowardsTarget());
     }
@@ -56,9 +58,16 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            statsManagerScript.updatePoints(1);
+
+        }
+        else if (collision.gameObject.CompareTag("EnemyDeleter"))
+        {
+            Destroy(gameObject);
+            statsManagerScript.updateLives(-1);
+
         }
     }
-    
     
 
 }
