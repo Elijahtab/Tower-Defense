@@ -9,12 +9,12 @@ public class StatsManagerScript : MonoBehaviour
     public void updatePoints(int myPoints)
     {
         points += myPoints;
-        Debug.Log("Points: " + points);
+        //Debug.Log("Points: " + points);
     }
     
     public void updateLives(int myLives)
     {
         lives += myLives;
-        Debug.Log("Lives: " + lives);
+        //Debug.Log("Lives: " + lives);
     }
 }

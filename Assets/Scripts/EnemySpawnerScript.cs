@@ -26,6 +26,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private IEnumerator SpawnObjectRoutine()
     {
+        currentSpawnCounter = 0;
         while (currentSpawnCounter < numEnemiesToSpawn + 1)
         {
             // Calculate the bottom-left position of the screen
