@@ -8,15 +8,13 @@ public class EnemySpawnerScript : MonoBehaviour
     public float spawnInterval = 0;
     public GameObject enemyPrefab;
 
-    
-
+    private LevelManagingScript levelManagingScript;
     private int currentSpawnCounter = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
-
+        levelManagingScript = GetComponent<LevelManagingScript>();
     }
-
     public void spawnEnemies(int numEnemies)
     {
         numEnemiesToSpawn = Mathf.RoundToInt(Mathf.Pow(numEnemies + 1f, 1.6f));
@@ -26,9 +24,14 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private IEnumerator SpawnObjectRoutine()
     {
+        Debug.Log("coroutine started");
+        Debug.Log("spawn counter" + currentSpawnCounter);
+        Debug.Log("num enemies" + numEnemiesToSpawn);
         currentSpawnCounter = 0;
         while (currentSpawnCounter < numEnemiesToSpawn + 1)
         {
+            Debug.Log("spawn counter" + currentSpawnCounter);
+            Debug.Log("num enemies" + numEnemiesToSpawn);
             // Calculate the bottom-left position of the screen
             Vector3 screenBottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
             screenBottomLeft.z = -.01f;
@@ -42,5 +45,9 @@ public class EnemySpawnerScript : MonoBehaviour
             // Wait for the specified interval
             yield return new WaitForSeconds(spawnInterval);
         }
+        Debug.Log("spawn counter" + currentSpawnCounter);
+        Debug.Log("num enemies" + numEnemiesToSpawn);
+        levelManagingScript.levelFinished();
+        
     }
 }

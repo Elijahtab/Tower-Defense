@@ -16,17 +16,18 @@ public class LevelManagingScript : MonoBehaviour
         enemySpawnerScript = GetComponent<EnemySpawnerScript>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void nextLevel()
     {
+        Debug.Log(levelNum);
         levelNum += 1;
         TMP_Text levelButtonText = levelButton.GetComponentInChildren<TMP_Text>();
         levelButtonText.text = "Begin Level " + levelNum;
         enemySpawnerScript.spawnEnemies(levelNum);
+        levelButton.gameObject.SetActive(false);
         
+    }
+    public void levelFinished()
+    {
+        levelButton.gameObject.SetActive(true);
     }
 }
