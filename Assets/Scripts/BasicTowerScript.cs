@@ -27,7 +27,7 @@ public class BasicTowerScript : MonoBehaviour
         myTowerPlaced = false;
     }
 
-    private GameObject FindClosestEnemy()
+    /* private GameObject FindClosestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         Vector2 currentPosition = transform.position;
@@ -44,6 +44,27 @@ public class BasicTowerScript : MonoBehaviour
         }
 
         return null; // Return null if no enemy within the distance is found
+    }
+    */
+
+    private GameObject FindClosestEnemy()
+    {
+        // Iterate through all ChaseableEntities
+        foreach (var obj in enemyEntityManager.Entities)
+        {
+            Vector2 entityPosition = new Vector2(obj.transform.position.x, obj.transform.position.y);
+
+            float distanceToEnemy = Vector2.Distance(entityPosition, transform.position);
+
+            if(distanceToEnemy <= maxDistance)
+            {
+                return obj.gameObject;
+            }
+                
+            
+            
+        }
+        return null;
     }
 
     private void Update()
@@ -89,7 +110,6 @@ public class BasicTowerScript : MonoBehaviour
     }
 
     
+    
 
-    
-    
 }

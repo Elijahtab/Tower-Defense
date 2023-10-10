@@ -24,14 +24,11 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private IEnumerator SpawnObjectRoutine()
     {
-        Debug.Log("coroutine started");
-        Debug.Log("spawn counter" + currentSpawnCounter);
-        Debug.Log("num enemies" + numEnemiesToSpawn);
+       
         currentSpawnCounter = 0;
         while (currentSpawnCounter < numEnemiesToSpawn + 1)
         {
-            Debug.Log("spawn counter" + currentSpawnCounter);
-            Debug.Log("num enemies" + numEnemiesToSpawn);
+           
             // Calculate the bottom-left position of the screen
             Vector3 screenBottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
             screenBottomLeft.z = -.01f;
@@ -45,8 +42,6 @@ public class EnemySpawnerScript : MonoBehaviour
             // Wait for the specified interval
             yield return new WaitForSeconds(spawnInterval);
         }
-        Debug.Log("spawn counter" + currentSpawnCounter);
-        Debug.Log("num enemies" + numEnemiesToSpawn);
         levelManagingScript.levelFinished();
         
     }
