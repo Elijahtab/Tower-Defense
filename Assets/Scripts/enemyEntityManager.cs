@@ -10,7 +10,7 @@ public class enemyEntityManager : MonoBehaviour
     void Awake()
     {
         Entities.Add(this);
-        Debug.Log(this);
+
     }
  
     void OnDestroy()
