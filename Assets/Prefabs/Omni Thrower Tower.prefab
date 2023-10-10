@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6519542591252084412}
   - component: {fileID: 5591713456464759277}
   - component: {fileID: 1407658893890086155}
-  - component: {fileID: 9166456682563134126}
+  - component: {fileID: -653754623214610588}
   m_Layer: 0
-  m_Name: 'Basic Tower '
+  m_Name: Omni Thrower Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.06, y: -2, z: -1.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5590314684665828816}
   m_Father: {fileID: 0}
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 3625043607559282579, guid: 6721eef96ff124946b429898846a6d91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,9 +105,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e8723432965664d88d81d4e8e528c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9166456682563134126
+--- !u!114 &-653754623214610588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,14 +160,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956996317194683248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f724433e4b90cc740a7e1cf293ae4fb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c8ad3222b1f4964ab382687dfd18faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Enemy
-  maxDistance: 3.2
-  projectilePrefab: {fileID: 9174041964117015018, guid: b327bc87a4994af4297d01177255fc87, type: 3}
-  shootingSpeedDelay: 1.5
+  maxDistance: 2
+  projectilePrefab: {fileID: 9174041964117015018, guid: 4dbb1527e8f5f6b4194a5416eb9db554, type: 3}
+  shootingSpeedDelay: 2
   projectileSpeed: 10
+  numProjectiles: 8
 --- !u!1 &5590314684665828817
 GameObject:
   m_ObjectHideFlags: 0

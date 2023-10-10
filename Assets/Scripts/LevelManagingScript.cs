@@ -18,7 +18,6 @@ public class LevelManagingScript : MonoBehaviour
 
     public void nextLevel()
     {
-        Debug.Log(levelNum);
         levelNum += 1;
         TMP_Text levelButtonText = levelButton.GetComponentInChildren<TMP_Text>();
         levelButtonText.text = "Begin Level " + levelNum;

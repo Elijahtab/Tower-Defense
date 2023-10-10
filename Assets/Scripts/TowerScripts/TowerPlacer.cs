@@ -11,12 +11,15 @@ public class TowerPlacer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private BasicTowerScript basicTowerScript;
+    private OmniTowerScript omniTowerScript;
+
     private TowerPlacingManager towerPlacingManager;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         basicTowerScript = GetComponent<BasicTowerScript>();
+        omniTowerScript = GetComponent<OmniTowerScript>();
         GameObject gameManager = GameObject.Find("GameManager");
         towerPlacingManager = gameManager.GetComponent<TowerPlacingManager>();
 
@@ -38,7 +41,14 @@ public class TowerPlacer : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && canBePlaced == true && towerPlaced == false)
         {
             towerPlaced = true;
-            basicTowerScript.towerIsPlaced();
+            if (basicTowerScript != null)
+            {
+                basicTowerScript.towerIsPlaced();
+            }
+            else if (omniTowerScript != null)
+            {
+                omniTowerScript.towerIsPlaced();
+            }
             towerPlacingManager.canPlaceNewTower(true);
         }
         

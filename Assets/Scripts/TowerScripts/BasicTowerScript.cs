@@ -5,13 +5,13 @@ using UnityEngine;
 public class BasicTowerScript : MonoBehaviour
 {
     public string enemyTag = "Enemy"; // The tag of the enemy objects
-    public float maxDistance = 10f; // The maximum distance to consider an enemy
+    public float maxDistance; // The maximum distance to consider an enemy
     
     private float delayTimer; // Timer to track elapsed time
     public GameObject projectilePrefab; // Prefab of the projectile to shoot
-    public float shootingSpeedDelay = 2f; // Delay duration in seconds
-    public float projectileSpeed = 10f; // Speed of the projectile
-
+    public float shootingSpeedDelay; // Delay duration in seconds
+    public float projectileSpeed;
+    
     bool myTowerPlaced = false;
 
     
@@ -27,7 +27,7 @@ public class BasicTowerScript : MonoBehaviour
         myTowerPlaced = false;
     }
 
-    /* private GameObject FindClosestEnemy()
+     private GameObject FindClosestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         Vector2 currentPosition = transform.position;
@@ -45,9 +45,10 @@ public class BasicTowerScript : MonoBehaviour
 
         return null; // Return null if no enemy within the distance is found
     }
-    */
+    
 
-    private GameObject FindClosestEnemy()
+    
+    /* private GameObject FindClosestEnemy()
     {
         // Iterate through all ChaseableEntities
         foreach (var obj in enemyEntityManager.Entities)
@@ -66,7 +67,7 @@ public class BasicTowerScript : MonoBehaviour
         }
         return null;
     }
-
+    */
     private void Update()
     {
         GameObject closestEnemy = FindClosestEnemy();
@@ -85,13 +86,16 @@ public class BasicTowerScript : MonoBehaviour
                     Vector2 direction = (closestEnemy.transform.position - transform.position).normalized;
 
                     // Create a new projectile instance
-                    GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + (direction * 0.1f), Quaternion.identity);
-
-                    // Calculate the direction towards the closest enemy
+                    GameObject projectile = Instantiate(projectilePrefab, (Vector2)transform.position + (direction * .2f), Quaternion.identity);
 
                     // Set the velocity of the projectile
                     Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
                     rb.velocity = (direction * projectileSpeed) + enemyRigidbody.velocity;
+                    
+
+                    // Apply the rotation to the turret
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
                     
                 }
 
