@@ -109,6 +109,17 @@ public class BasicTowerScript : MonoBehaviour
         myTowerPlaced = true;
     }
 
+    public void towerScriptGO()
+    {
+        // Iterate through all ChaseableEntities
+        foreach (var obj in enemyEntityManager.Entities)
+        {
+            Vector2 entityPosition = new Vector2(obj.transform.position.x, obj.transform.position.y);
+
+            // Now you can use entityPosition as needed
+            Debug.Log("Entity " + obj.name + " Position: " + entityPosition);
+        }
+    }
     
     
 
