@@ -16,6 +16,7 @@ public class EnemyManagerScript : MonoBehaviour
         {
             waypointPositions.Add(child.position);
             
+            
         }
         
     }

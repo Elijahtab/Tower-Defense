@@ -6,7 +6,7 @@ using TMPro;
 public class StatsManagerScript : MonoBehaviour
 {
     int points = 0;
-    int money = 200;
+    int money = 300;
     public int lives = 10;
 
     public TMP_Text moneyText;

@@ -5,6 +5,12 @@ using UnityEngine;
 public class TowerPlacingManager : MonoBehaviour
 {
     bool canPlaceTower = true;
+    private StatsManagerScript statsManagerScript;
+    
+    public void Start()
+    {
+        statsManagerScript = GetComponent<StatsManagerScript>();
+    }
 
     public void canPlaceNewTower(bool myCanPlaceTower)
     {
@@ -25,5 +31,10 @@ public class TowerPlacingManager : MonoBehaviour
                 Instantiate(towerName, worldPosition, Quaternion.identity);
             }
         
+    }
+    public void subtractTowerCost(int towerCost)
+    {
+        towerCost = towerCost/(-100);
+        statsManagerScript.updatePoints(towerCost);
     }
 }

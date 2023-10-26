@@ -24,20 +24,19 @@ public class EnemyScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(MoveTowardsTarget());
     }
-    void Update()
-    {
-        
-    }
+   
     private IEnumerator MoveTowardsTarget()
     {
+        
         for (int i = 0; i < enemyManagerScript.waypointPositions.Count; i++)
         {
+            
             Vector2 vector = enemyManagerScript.waypointPositions[i];
             
 
             targetPosition = enemyManagerScript.waypointPositions[i];
             direction = (targetPosition - (Vector2)transform.position).normalized;
-
+            
             while (Vector2.Distance(transform.position, targetPosition) > .1f)
             {   
                 // Move towards the target position based on the direction and moveSpeed
