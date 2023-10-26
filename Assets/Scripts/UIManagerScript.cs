@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManagerScript : MonoBehaviour
 {
     public GameObject pauseMenuCanvas;
     public GameObject TowerMenu;
     public GameObject openTowerMenuButton;
+    public GameObject endGameMenu;
+
+    public TMP_Text endGamePointsText;
 
 
     private bool isPaused = false;
 
     private void Start()
     {
-        // Ensure the pause menu is initially inactive
+        // Ensure the menus is initially inactive
         pauseMenuCanvas.SetActive(false);
+
+        endGameMenu.SetActive(false);
 
         TowerMenu.SetActive(false);
         
@@ -63,5 +69,11 @@ public class UIManagerScript : MonoBehaviour
     {
         TowerMenu.SetActive(false);
         openTowerMenuButton.SetActive(true);
+    }
+    public void endGame(int endPoints)
+    {
+        endGameMenu.SetActive(true);
+        endGamePointsText.text = "Total Kills:"  + endPoints;
+        PauseGame();
     }
 }

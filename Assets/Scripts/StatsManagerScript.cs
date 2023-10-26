@@ -11,11 +11,13 @@ public class StatsManagerScript : MonoBehaviour
 
     public TMP_Text moneyText;
     public TMP_Text livesText;
+    public UIManagerScript uiManagerScript;
 
     public void Start()
     {
         moneyText.text = money.ToString();
         livesText.text = lives.ToString();
+        uiManagerScript = GetComponent<UIManagerScript>();
     }
 
     public void updatePoints(int myPoints)
@@ -29,5 +31,9 @@ public class StatsManagerScript : MonoBehaviour
     {
         lives += myLives;
         livesText.text = lives.ToString();
+        if (lives <= 0)
+        {
+            uiManagerScript.endGame(points);
+        }
     }
 }
